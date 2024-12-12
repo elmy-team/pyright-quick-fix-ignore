@@ -1,57 +1,59 @@
 {
-  "name": "pyright-quick-fix-ignore",
-  "displayName": "Pyright Quick Fix: Ignore",
-  "description": "quick fix suggestion when a piece of code triggers a pyright error, the fix adds a comment with a specific directive that makes pyright ignore the error",
-  "version": "1.0.1",
-  "license": "MIT",
-  "publisher": "elmy",
-  "repository": {
-      "type": "git",
-      "url": "https://github.com/elmy-team/pyright-quick-fix-ignore"
-  },
+  "name": "pyright-ignore-extension",
+  "displayName": "Pyright Ignore Extension",
+  "description": "Adds Pyright ignore comments as quick fixes and warns about unused ignores.",
+  "version": "1.1.0",
+  "publisher": "your-publisher-name",
   "engines": {
-    "vscode": "^1.95.0"
+      "vscode": "^1.95.0"
   },
-  "categories": [
-    "Other"
-  ],
+  "categories": ["Other"],
   "activationEvents": [
       "onLanguage:python"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "pyright-quick-fix.helloWorld",
-        "title": "Hello World"
-      }
-    ],
-    "languages": [
-      {
-        "id": "python",
-        "aliases": ["Python", "python"],
-        "extensions": [".py"],
-        "configuration": "./language-configuration.json"
-      }
-  ]
+      "languages": [
+          {
+              "id": "python",
+              "aliases": ["Python", "python"],
+              "extensions": [".py"],
+              "configuration": "./language-configuration.json"
+          }
+      ],
+      "configuration": {
+          "type": "object",
+          "title": "Pyright Ignore Extension Configuration",
+          "properties": {
+              "pyrightIgnoreExtension.warnOnUnusedIgnores": {
+                  "type": "boolean",
+                  "default": true,
+                  "description": "Enable warnings for unused Pyright ignore comments."
+              },
+              "pyrightIgnoreExtension.unusedIgnoreSeverity": {
+                  "type": "string",
+                  "enum": ["Error", "Warning", "Information", "Hint"],
+                  "default": "Warning",
+                  "description": "Set the severity level for unused Pyright ignore comments."
+              }
+          }
+      },
+      "commands": [
+          {
+              "command": "pyright-ignore-extension.addIgnore",
+              "title": "Add Pyright Ignore Comment"
+          }
+      ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src",
-    "test": "vscode-test"
+      "vscode:prepublish": "npm run compile",
+      "compile": "tsc -p ./",
+      "watch": "tsc -watch -p ./",
+      "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.9",
-    "@types/node": "20.x",
-    "@types/vscode": "^1.95.0",
-    "@typescript-eslint/eslint-plugin": "^8.10.0",
-    "@typescript-eslint/parser": "^8.7.0",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1",
-    "eslint": "^9.13.0",
-    "typescript": "^5.6.3"
+      "typescript": "^4.0.0",
+      "vscode": "^1.1.37",
+      "@types/node": "^14.0.0"
   }
 }
