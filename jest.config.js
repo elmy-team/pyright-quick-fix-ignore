@@ -1,15 +1,8 @@
-// jest.config.js
-
 module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
-  moduleNameMapper: {
-    '^vscode$': '<rootDir>/src/__mocks__/vscode.ts',
-  },
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.json',
+    preset: 'ts-jest',
+    testEnvironment: 'node',
+    testMatch: ['**/test/**/*.test.ts'],
+    moduleNameMapper: {
+        '^vscode$': '<rootDir>/__mocks__/vscode.js',
     },
-  },
-  testMatch: ['**/src/test/**/*.test.ts'],
 };

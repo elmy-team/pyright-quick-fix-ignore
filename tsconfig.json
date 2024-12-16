@@ -1,26 +1,14 @@
 {
-	"compilerOptions": {
-			"module": "commonjs",
-			"target": "ES2022",
-			"outDir": "out",
-			"lib": [
-					"ES2022"
-			],
-			"sourceMap": true,
-			"rootDir": "src",
-			"strict": true,
-			"esModuleInterop": true,
-			"skipLibCheck": true,
-			"typeRoots": [
-					"node_modules/@types"
-			],
-			"types": ["node", "jest"]
-	},
-	"include": [
-			"src/**/*"
-	],
-	"exclude": [
-			"node_modules",
-			".vscode-test"
-	]
+  "compilerOptions": {
+    "target": "es2017",                 // Ensures support for modern JavaScript features like `includes`
+    "module": "commonjs",               // Node.js uses CommonJS module system
+    "strict": true,                     // Enable strict type-checking
+    "esModuleInterop": true,            // Ensures compatibility with CommonJS modules
+    "moduleResolution": "node",         // Resolve modules the Node.js way
+    "outDir": "./dist",                 // Directory for compiled files
+    "rootDir": "./",                    // Root directory of the project
+    "types": ["jest", "node"],          // Include Jest and Node.js types
+    "lib": ["es2017"]                   // Include ES2017 standard library
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"]
 }
